@@ -1,8 +1,9 @@
 #include "BinaryTree.h"
 #include <iostream>
 #include <queue>
+#include <algorithm>
 
-void printOrder(std::vector<int> order) {
+void printOrder(std::vector<int>& order) {
     std::cout << "[";
     for (int i = 0; i < order.size(); i++) {
         std::cout << order[i];
@@ -79,7 +80,7 @@ void BinaryTree::print() {
 
     std::cout << root->value << std::endl;
 
-    print(root->left, "", true, 'L');
+    print(root->left, "", root->right != nullptr, 'L');
     print(root->right, "", false, 'R');
 }
 
@@ -208,7 +209,7 @@ std::vector<int> BinaryTree::getPostOrder() {
 }
 std::vector<int> BinaryTree::getLevelOrder() {
     if (root == nullptr) return {};
-    
+
     std::queue<TreeNode*> q;
     q.push(root);
 
@@ -262,7 +263,7 @@ int BinaryTree::leafCount(TreeNode* node) {
 }
 
 void BinaryTree::mirror() {
-    return mirror(root);
+    mirror(root);
 }
 
 void BinaryTree::mirror(TreeNode* node) {

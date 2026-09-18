@@ -1,5 +1,5 @@
 #pragma once
-#include <cstring>
+#include <string>
 #include <vector>
 
 void printOrder(std::vector<int> order);

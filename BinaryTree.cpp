@@ -46,8 +46,29 @@ void BinaryTree::copy(TreeNode* cur, TreeNode* oth) {
 }
 
 BinaryTree::BinaryTree(const BinaryTree& oth) {
+    if (oth.root == nullptr) {
+        root = nullptr;
+        return;
+    }
+
     root = new TreeNode(oth.root->value);
     copy(root, oth.root);
+}
+
+BinaryTree& BinaryTree::operator=(const BinaryTree& oth) {
+    if (this == &oth) return *this;
+
+    clear(root);
+
+    if (oth.root == nullptr) {
+        root = nullptr;
+        return *this;
+    }
+
+    root = new TreeNode(oth.root->value);
+    copy(root, oth.root);
+
+    return *this;
 }
 
 void BinaryTree::print() {
@@ -102,6 +123,8 @@ void BinaryTree::print(TreeNode* node,
 }
 
 void BinaryTree::build(const std::vector<int>& values, int nullValue) {
+    clear(root);
+
     if (values.empty() || values[0] == nullValue) {
         root = nullptr;
         return;
@@ -184,6 +207,8 @@ std::vector<int> BinaryTree::getPostOrder() {
     return postOrder(root);
 }
 std::vector<int> BinaryTree::getLevelOrder() {
+    if (root == nullptr) return {};
+    
     std::queue<TreeNode*> q;
     q.push(root);
 

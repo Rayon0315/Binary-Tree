@@ -50,6 +50,7 @@ public:
 
     void copy(TreeNode* cur, TreeNode* oth);
     BinaryTree(const BinaryTree& oth);
+    BinaryTree& operator=(const BinaryTree& oth);
 
     void build(const std::vector<int>& values, int nullValue);
 
